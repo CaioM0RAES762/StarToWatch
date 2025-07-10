@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarToWatch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="app.js"></script>
+    <style>
+        /* Global */
+        body {
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            z-index: 1000;
+            position: absolute;
+            padding: 1rem;
+            height: 90px;
+            opacity: 0.9;
+            width: 100%;
+            top: 0;
+            transition: 0.3s ease, padding 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(8, 8, 8, 0.95);
+            position: fixed;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            display: none;
+        }
+
+        .caixa-menuprincipal {
+            float: left;
+            padding: 35px;
+        }
+
+        .caixa-menuprincipal ul {
+            list-style-type: none;
+        }
+
+        .caixa-menuprincipal ul li {
+            display: inline-block;
+        }
+
+        .caixa-menuprincipal ul li a {
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 9px;
+            padding: 10px 15px;
+            color: #fff;
+            font-weight: 500;
+            font-size: medium;
+        }
+
+        .caixa-menuprincipal ul li a:hover {
+            color: rgba(8, 8, 8, 0.95);
+            background-color: #fff;
+        }
+
+        .login {
+            position: relative;
+            display: inline-block;
+        }
+
+        .loginUser {
+            display: flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 43px;
+            background-color: none;
+            border: 3px solid #e7cd03;
+            color: #d5d5d5;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            text-decoration: none;
+            line-height: 43px;
+            transition: 0.5s;
+        }
+
+        .loginUser:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .perfil-infos {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .avatar-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .avatar {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+        }
+
+        .menu-user {
+            display: none;
+            position: absolute;
+            top: 65px;
+            right: 14px;
+            background-color: #000000;
+            opacity: 0.9;
+            border: 1px solid #333;
+            border-radius: 2px;
+            width: 200px;
+            margin-top: 10px;
+            z-index: 999;
+        }
+
+
+        .menu-user::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            border-width: 0 8px 10px 8px;
+            border-style: solid;
+            border-color: transparent transparent #141414 transparent;
+        }
+
+        /* navegador de tablet, mobile e desktop*/
+        .tablet-nav {
+            display: none;
+        }
+
+        .menu-user ul {
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+        }
+
+        .menu-user li {
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-user a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+
+        }
+
+        .menu-user a {
+            color: rgb(226, 226, 226);
+            text-decoration: none;
+            width: 100%;
+        }
+
+        #user {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #userIcon {
+            font-size: 20px;
+        }
+
+        .linha {
+            width: 100%;
+            height: 1px;
+            background-color: #333;
+            margin-top: 10px;
+        }
+
+        .exit {
+            padding-left: 30px;
+        }
+
+        /* Carousel PRINCIPAL */
+        .carousel-item {
+            height: 75vh;
+            position: relative;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 650px;
+            filter: brightness(30%);
+        }
+
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: left;
+            left: 5%;
+            right: 5%;
+        }
+
+        .carousel-caption h1,
+        .carousel-caption p,
+        .carousel-caption small {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #aaa;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: relative;
+            left: 50%;
+        }
+
+        .carousel-indicators .active {
+            background-color: #2c07ff;
+        }
+
+        .titulo:hover {
+            color: #b2b0b0;
+        }
+
+        .sombra {
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            margin-top: -300px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);
+            z-index: 1;
+        }
+
+        /* Seta Navegação Carrossel */
+        .seta {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .seta-esquerda {
+            left: 10px;
+        }
+
+        .seta-direita {
+            right: 10px;
+        }
+
+        /* Main */
+        .titulo1,
+        .titulo2,
+        .titulo-salvos {
+            margin-left: 5%;
+            margin-top: 3%;
+            font-size: 2rem;
+            margin-bottom: 0.3em;
+            color: #fff;
+            font-weight: 800;
+            opacity: 0.95;
+        }
+
+
+        .titulo2 {
+            margin-top: 3%;
+        }
+
+        /* Carrossel Variantes da main */
+        .carrossel-wrapper,
+        .carrossel-wrapper1,
+        .carrossel-wrapper2,
+        .carrossel-wrapper5 {
+            position: relative;
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carrossel-card.top10 {
+            width: 254px;
+            max-width: 254px;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #111;
+            color: white;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carrossel-card.top10 img {
+            width: 90%;
+            height: 274px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-top: 8px;
+        }
+
+        .carrossel-card.top10 .info-top10 {
+            padding: 8px;
+            width: 90%;
+            text-align: left;
+        }
+
+        .carrossel-card.top10 .info-top10 p {
+            margin: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        .carrossel-card.top10 .info-top10 p strong {
+            color: #ffcc00;
+        }
+
+        .carrossel-card,
+        .carrossel-card1 {
+            flex: 0 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+
+        .carrossel-card {
+            position: relative;
+            width: 300px;
+            height: 170px;
+        }
+
+        .carrossel-card img {
+            width: 100%;
+            height: 230px;
+            border-radius: 10px;
+            transition: 0.4s;
+            transform: scale(0.96);
+        }
+
+        .carrossel-card.destaque img,
+        .carrossel-card.mini img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            filter: brightness(0.9);
+            transition: 0.4s;
+            transform: scale(0.96);
+        }
+
+        .carrossel-container {
+            display: flex;
+            gap: 0.5rem;
+            transition: transform 0.3s ease-in-out;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            padding: 1rem 0;
+        }
+
+        .carrossel-card.mini {
+            width: 180px;
+            height: auto;
+        }
+
+        .carrossel-card.mini img:hover {
+            transform: scale(1);
+        }
+
+        .carrossel-card.destaque {
+            width: 240px;
+            height: 400px;
+        }
+
+        .carrossel-card.destaque img:hover {
+            transform: scale(1);
+        }
+
+
+        .carrossel-card1:hover {
+            transform: scale(1.04);
+        }
+
+        .carrossel-card.trailer {
+            width: 400px;
+            height: 270px;
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trailer-frame {
+            width: 100%;
+            height: 100%;
+        }
+
+        .titulo-trailer {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: none;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .line,
+        .line2 {
+            background-color: #222;
+            height: 2px;
+            margin-bottom: 5%;
+        }
+
+        .line {
+            width: 80%;
+        }
+
+        .line2 {
+            width: 60%;
+        }
+
+
+        /* Funcionalidade curtir */
+        .bookmark-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 24px;
+            color: red;
+            background-color: transparent;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            z-index: 10;
+        }
+
+        .bookmark-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .carrossel-wrapper1 .seta {
+            display: none;
+        }
+
+        
+        /* Telas grandes */
+         @media (min-width: 1498px) {
+            .carrossel-wrapper1 .seta {
+                display: block;
+            }
+
+            .carousel-item {
+                height: 80vh;
+            }
+
+            .carousel-item img {
+                height: 850px;
+            }
+
+            .caixa-menuprincipal ul li a{
+                font-size: larger;
+            }
+
+            
+            .menu-user a,
+            .menu-user li {
+                font-size: 54px;
+                padding: 10px;
+            }
+
+
+            .carousel-item p {
+                font-size: 20px;
+                font-weight: 200;
+            }
+
+
+            .avatar {
+                width: 50px;
+                height: auto;
+            }
+
+            .linha {
+                height: 1px;
+                background-color: #333;
+                margin: 10px 0;
+            }
+
+
+            .carrossel-card.destaque {
+                width: 370px;
+                height: 570px;
+            }
+
+
+            .carrossel-card.mini {
+                width: 280px;
+                height: auto;
+            }
+
+            .carrossel-card.trailer {
+                width: 600px;
+                height: 370px;
+                margin: 0 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carrossel-card.top10 {
+                width: 204px;
+                max-width: 244px;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            .carrossel-card.top10 img {
+                width: 90%;
+                height: 244px;
+            }
+        }
+
+        /* Telas medias/Tablet (abaixo de 1028px) */
+        @media (max-width: 1028px) {
+            .carrossel-wrapper1 .seta {
+                display: block;
+            }
+
+            .carousel-item {
+                height: 55vh;
+            }
+
+            .carousel-item img {
+                height: 750px;
+            }
+
+            .perfil-infos {
+                display: none;
+            }
+
+            .caixa-menuprincipal {
+                display: none;
+            }
+
+            .tablet-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background-color: #000;
+                padding: 10px 0;
+                border-top: 1px solid #333;
+                height: 100px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+            }
+
+            .tablet-nav a {
+                color: white;
+                text-align: center;
+                font-size: 24px;
+                text-decoration: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tablet-nav a:hover {
+                color: rgb(255, 217, 0);
+            }
+
+            .tablet-nav .avatar {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                margin-bottom: 2px;
+            }
+
+            .menu-user {
+                display: none;
+                position: fixed !important;
+                top: 0;
+                bottom: 0;
+                right: 20px;
+                left: 0;
+                max-width: 400px;
+                width: 100%;
+                background-color: #141414;
+                border: 1px solid #333;
+                border-radius: 10px;
+                padding: 15px 0;
+                z-index: 9999;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            }
+
+            .avatar {
+                width: 50px;
+                height: auto;
+            }
+
+            .menu-user::before {
+                display: none;
+            }
+
+            .menu-user li {
+                justify-content: center;
+            }
+
+            .menu-user a,
+            .menu-user li {
+                font-size: 24px;
+                padding: 15px;
+            }
+
+            .linha {
+                height: 1px;
+                background-color: #333;
+                margin: 10px 0;
+            }
+
+
+            .carrossel-card.destaque {
+                width: 220px;
+                height: 380px;
+            }
+
+
+            .carrossel-card.mini {
+                width: 150px;
+                height: auto;
+            }
+
+            .carrossel-card.trailer {
+                width: 400px;
+                height: 270px;
+                margin: 0 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carrossel-card.top10 {
+                width: 204px;
+                max-width: 244px;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            .carrossel-card.top10 img {
+                width: 90%;
+                height: 244px;
+            }
+        }
+ /* Telas pequenas/Mobile (abaixo de 519px) */
+        @media (max-width: 519px) {
+
+            .carousel-item {
+                height: 57vh;
+            }
+
+            .menu-user a,
+            .menu-user li {
+                font-size: 24px;
+                padding: 10px;
+            }
+
+            .carousel-item img {
+                height: 450px;
+            }
+
+            .carousel-item p {
+                font-size: 12px;
+            }
+
+            .caixa-menuprincipal {
+                display: none;
+            }
+
+
+            .carrossel-card.destaque {
+                width: 190px;
+                height: 300px;
+            }
+
+
+            .carrossel-card.mini {
+                width: 150px;
+                height: auto;
+            }
+
+            .carrossel-card.trailer {
+                max-width: 300px;
+                width: 90%;
+                height: 270px;
+                margin: 0 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carrossel-card.top10 {
+                width: 100%;
+                max-width: 124px;
+                max-height: auto;
+
+            }
+
+            .carrossel-card.top10 img {
+                width: 90%;
+                height: 104px;
+                border-radius: 10px;
+                object-fit: cover;
+                margin-top: 8px;
+                transform: scale(0.9);
+            }
+
+            .carrossel-card.top10 .info-top10 p {
+                margin: 4px 0;
+                font-size: 0.7rem;
+            }
+
+
+            .tablet-nav a {
+                font-size: 14px;
+            }
+
+            .tablet-nav i {
+                font-size: 20px;
+            }
+
+            @media (max-width: 380px) {
+
+                .menu-user a,
+                .menu-user li {
+                    font-size: 14px;
+                    padding: 7px;
+                }
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="d-flex justify-content-between align-items-center">
+        <nav class="caixa-menuprincipal">
+            <ul>
+                <li><a href="catalago.html">Catálogo</a></li>
+                <li><a href="populares.html">Populares</a></li>
+                <li><a href="cartaz.html">Em Cartaz</a></li>
+                <li><a href="categorias.html">Categorias</a></li>
+                <li><a href="buscafilmes.html"><i class="fas fa-search"></i> Buscar Filmes</a></li>
+            </ul>
+        </nav>
+
+        <div class="perfil-infos">
+            <div class="login" id="loginContainer">
+                <a href="login.html" class="loginUser">Fazer login</a>
+            </div>
+            <button class="avatar-btn" onclick="toggleMenu()">
+                <img src="avatarpadrao.png" alt="Avatar" class="avatar" id="avatar-btn">
+            </button>
+        </div>
+
+        <div class="menu-user" id="menuPerfil">
+            <ul>
+                <li><img src="avatarpadrao.png" alt="" id="avatar-menu" class="avatar"> <span id="userName"> Seu
+                        Nome</span></li>
+                <li><span id="email">Seu email</span></li>
+                <div class="linha"></div>
+                <li><a href="perfilUser.html"><i class="bi bi-person-gear"></i> Minha conta</a></li>
+                <li><a href="perfilUser.html"><i class="bi bi-box-arrow-up-right"></i> Mudar perfil</a></li>
+                <li><a href="favoritos.html"><i class="bi bi-heart"></i> Favoritos</a></li>
+                <li><a href="graficos.html"><i class="bi bi-graph-up"></i> Estatisticas</a></li>
+                <li><a href="cadastraFilmes.html"><i class="bi bi-gear"></i> Cadastrar Filmes</a></li>
+                <li><a href="#"><i class="bi bi-person"></i> Sobre Nós</a></li>
+                <li><a href="#"><i class="bi bi-question-circle"></i> Ajuda</a></li>
+                <div class="linha"></div>
+                <li><a href="paginainicial.html" class="exit" id="logout">Sair da conta</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+
+    <nav class="tablet-nav">
+        <a href="index.html"><i class="fas fa-home"></i>Home</a>
+        <a href="buscafilmes.html"><i class="fas fa-search"></i>Buscar</a>
+        <a href="populares.html"><i class="fas fa-fire"></i>Populares</a>
+        <a href="#" id="btnTabletMais">
+            <img src="avatarpadrao.png" alt="Avatar" class="avatar" id="avatar-btn-tablet"> Mais
+        </a>
+    </nav>
+
+    <div id="carouselFilmes" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselFilmes" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselFilmes" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselFilmes" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselFilmes" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselFilmes" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+
+        <div class="carousel-inner rounded">
+            <div class="carousel-item active">
+                <a href="detalhes.html?id=11"><img src="carrosel/batman20222.jpg" class="d-block w-100"
+                        alt="Slide 1"></a>
+                <div class="carousel-caption">
+                    <a href="detalhes.html?id=11">
+                        <h1 class="titulo">The Batman</h1>
+                    </a>
+                    <small>2022 • Ação, Suspense e Crime • </small> <small class="nota">7,8/ 10</small>
+                    <p>Em "The Batman", um assassino em série sádico começa a assassinar figuras políticas <br>
+                        importantes em Gotham. O Batman é forçado a investigar a corrupção oculta da cidade <br>
+                        e questionar o envolvimento de sua própria família.</p>
+                </div>
+
+            </div>
+            <div class="carousel-item">
+                <a href="detalhes.html?id=12"><img src="carrosel/duna2.jpg" class="d-block w-100" alt="Slide 2"></a>
+                <div class="carousel-caption">
+                    <a href="detalhes.html?id=12">
+                        <h1 class="titulo">Duna: Parte Dois</h1>
+                    </a>
+                    <small>2024 • Ficção científica, Aventura e Drama • </small> <small class="nota"> 8,5/ 10</small>
+                    <p>Após a queda da Casa Atreides, Paul Atreides une-se aos Fremen no planeta desértico Arrakis <br>
+                        para liderar uma guerra contra a Casa Harkonnen. Enquanto busca vingança pelos conspiradores
+                        <br>
+                        que destruíram sua família, Paul enfrenta a difícil escolha entre o amor de sua vida e o destino
+                        <br>
+                        do universo, tentando evitar um futuro catastrófico que apenas ele pode prever.
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="detalhes.html?id=13"><img src="carrosel/homemaranha.jpg" class="d-block w-100"
+                        alt="Slide 3"></a>
+                <div class="carousel-caption">
+                    <a href="detalhes.html?id=13">
+                        <h1 class="titulo">Homem-Aranha: Através do Aranhaverso</h1>
+                    </a>
+                    <small>2023 ‧ Ação/Ficção científica ‧ 2h 20m</small> <small class="nota"> 8,6/ 10</small>
+                    <p>Miles Morales embarca em uma nova aventura pelo multiverso ao lado de Gwen Stacy e outros
+                        Homens-Aranha. <br>
+                        Quando surgem conflitos sobre como enfrentar uma nova ameaça, ele precisa descobrir o que
+                        realmente <br>
+                        significa ser um herói e proteger quem ama.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="detalhes.html?id=14"><img src="carrosel/Interstellar.jpg" class="d-block w-100"
+                        alt="Slide 4"></a>
+                <div class="carousel-caption">
+                    <a href="detalhes.html?id=14">
+                        <h1 class="titulo">Interestelar</h1>
+                    </a>
+                    <small>2014 • Drama, Ficção Científica</small> <small class="nota">8,7/ 10</small>
+                    <p>Interestelar acompanha Cooper, um ex-piloto da NASA que lidera uma missão para encontrar um novo
+                        planeta <br>
+                        habitável, já que a Terra está ficando inabitável. Através de um buraco de minhoca, ele e sua
+                        equipe exploram <br>
+                        outros mundos, enquanto sua filha Murph tenta salvar a humanidade por outro caminho, do planeta.
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="detalhes.html?id=15"><img src="carrosel/quarteto.jpg" class="d-block w-100" alt="Slide 5"></a>
+                <div class="carousel-caption">
+                    <a href="detalhes.html?id=15">
+                        <h1 class="titulo">Quarteto Fantástico: Primeiros Passos </h1>
+                    </a>
+                    <small>2025 • Ação, Aventura, Ficção Científica • </small> <small class="nota">8,0/ 10</small>
+                    <div class="curtircarrossel"><i class="fa-regular fa-heart bookmark-btn" data-id="1"
+                            style="display: none;"></i> </div>
+                    <p>O filme Quarteto Fantástico: Primeiros Passos (2025) segue Reed Richards, Sue Storm, Johnny Storm
+                        e Ben Grimm, <br>
+                        quatro astronautas que ganham poderes após serem atingidos por raios cósmicos. Eles enfrentam
+                        Galactus e o <br>
+                        Surfista Prateado, enquanto lidam com suas novas habilidades e seus laços familiares.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sombra"></div>
+
+
+
+
+        <!-- Controles (Setinhas) -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselFilmes" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselFilmes" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+
+
+    <h1 class="titulo1">Top10 filmes</h1>
+    <div class="carrossel-wrapper5">
+        <button class="seta seta-esquerda" data-target="carrossel-filmes5">&#10094;</button>
+        <div id="carrossel-filmes5" class="carrossel-container"></div>
+        <button class="seta seta-direita" data-target="carrossel-filmes5">&#10095;</button>
+    </div>
+
+
+
+    <h1 class="titulo1">Destaques</h1>
+    <div class="carrossel-wrapper1">
+        <button class="seta seta-esquerda" data-target="carrossel-filmes1">&#10094;</button>
+        <div id="carrossel-filmes1" class="carrossel-container"></div>
+        <button class="seta seta-direita" data-target="carrossel-filmes1">&#10095;</button>
+    </div>
+
+    <h1 class="titulo2">Trailers</h1>
+    <div class="carrossel-wrapper">
+        <button class="seta seta-esquerda" data-target="carrossel-filmes4">&#10094;</button>
+        <div id="carrossel-filmes4" class="carrossel-container"></div>
+        <button class="seta seta-direita" data-target="carrossel-filmes4">&#10095;</button>
+    </div>
+
+    <h1 class="titulo2">Inesqueciveis</h1>
+    <div class="carrossel-wrapper2">
+        <button class="seta seta-esquerda" data-target="carrossel-filmes2">&#10094;</button>
+        <div id="carrossel-filmes2" class="carrossel-container"></div>
+        <button class="seta seta-direita" data-target="carrossel-filmes2">&#10095;</button>
+    </div>
+
+    <h1 class="titulo2">Plots fantásticos</h1>
+    <div class="carrossel-wrapper">
+        <button class="seta seta-esquerda" data-target="carrossel-filmes3">&#10094;</button>
+        <div id="carrossel-filmes3" class="carrossel-container"></div>
+        <button class="seta seta-direita" data-target="carrossel-filmes3">&#10095;</button>
+    </div>
+
+
+    <footer class="container-fluid px-0">
+        <div class="line w-100"></div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="sobre text-center">
+                    <h4 class="text-warning fw-bold text-start">Sobre mim:</h4>
+                    <p class="sobremim text-start">
+                    <p class="sobremim text-start">
+                        Sou Caio Moraes, estudante de Análise e Desenvolvimento de Sistemas.
+                        Gosto de transformar ideias em experiências digitais, sempre buscando
+                        aprender algo novo a cada projeto. Este site foi criado como parte de
+                        meus estudos, unindo prática de desenvolvimento web com algo que curto
+                        muito: filmes!
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="autoria text-center">
+                    <h4 class="text-warning fw-bold text-start">Autoria:</h4>
+                    <p class="text-start">
+                        <i class="bi bi-person-fill text-start" style="font-size: 20px;"></i>
+                        Aluno: Caio Moraes da Silva <br>
+                        <i class="bi bi-person-fill text-start" style="font-size: 20px;"></i>
+                        Curso: ADS<br>
+                        <i class="bi bi-person-fill text-start" style="font-size: 20px;"></i>
+                        Turma: Manhã
+                    </p>
+                    <div class="line2 "></div>
+                    <h5 class="text-warning fw-bold text-start">Redes sociais: </h5>
+                    <a href="https://github.com/CaioM0RAES762" target="_blank" class="text-light me-3 fs-4">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="mailto:caio37908@gmail.com" class="text-light me-3 fs-4">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/__caio.moraes/" target="_blank" class="text-light fs-4">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menuPerfil');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        window.addEventListener('click', function (e) {
+            const menu = document.getElementById('menuPerfil');
+            const avatarBtn = document.querySelector('.avatar-btn');
+            const tabletBtn = document.getElementById('btnTabletMais');
+
+            if (!menu.contains(e.target) &&
+                (!avatarBtn || !avatarBtn.contains(e.target)) &&
+                (!tabletBtn || !tabletBtn.contains(e.target))) {
+                menu.style.display = 'none';
+            }
+        });
+
+        window.onload = () => {
+            const perfil = JSON.parse(localStorage.getItem('perfilSelecionado'));
+            const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+
+            const avatarBtn = document.getElementById('avatar-btn');
+            const avatarTablet = document.getElementById('avatar-btn-tablet');
+            const avatarMenu = document.getElementById('avatar-menu');
+            const userName = document.getElementById('userName');
+            const emailSpan = document.getElementById('email');
+            const loginContainer = document.getElementById('loginContainer');
+
+            if (usuario) {
+                if (loginContainer) loginContainer.style.display = 'none';
+
+                if (perfil) {
+                    if (avatarBtn) avatarBtn.src = perfil.imagem;
+                    if (avatarTablet) avatarTablet.src = perfil.imagem;
+                    if (avatarMenu) avatarMenu.src = perfil.imagem;
+
+                    if (userName) {
+                        const nome = perfil.nome;
+                        const maxCharsNome = 12;
+                        userName.textContent = nome.length > maxCharsNome ? nome.slice(0, maxCharsNome) + '...' : nome;
+                    }
+                }
+
+                if (emailSpan) {
+                    const email = usuario.login;
+                    const maxChars = 15;
+                    emailSpan.textContent = email.length > maxChars ? email.slice(0, maxChars) + '...' : email;
+                }
+            } else {
+                if (loginContainer) loginContainer.style.display = 'block';
+                if (avatarBtn) avatarBtn.src = 'avatarpadrao.png';
+                if (avatarTablet) avatarTablet.src = 'avatarpadrao.png';
+                if (avatarMenu) avatarMenu.src = 'avatarpadrao.png';
+                if (userName) userName.textContent = 'Seu nome';
+                if (emailSpan) emailSpan.textContent = 'Seu email';
+            }
+        };
+
+        document.getElementById('btnTabletMais').addEventListener('click', function (e) {
+            e.preventDefault();
+            toggleMenu();
+        });
+
+        document.getElementById('logout')?.addEventListener('click', function () {
+            sessionStorage.removeItem('usuario');
+            window.location.href = 'login.html';
+        });
+    </script>
+
+
+
+
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

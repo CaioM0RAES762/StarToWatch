@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarToWatch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assents/css/pginicial.css">
+</head>
+
+<body>
+    <div class="sombra"></div>
+    <header class="d-flex justify-content-between align-items-center">
+        <img src="avatares/logo.png" class="logo" alt="logo">
+        <nav class="caixa-menuprincipal">
+            <ul>
+                <li><a href="login.html" class="entrar">Entrar</a></li>
+                <li><a href="resgistro.html" class="registrar">Criar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <main>
+        <div class="sombra"></div>
+        <div class="video">
+            <video class="fundo" autoplay muted loop>
+                <source src="videofundo/The Batman.mp4" type="video/mp4">
+            </video>
+            <div class="conteudo">
+                <h1>Seu cátalogo de filmes<br> há apenas um clique de distância</h1>
+                <p>Venha e mergulhe em um universo de entretenimento ilimitado</p>
+                <a href="login.html" class="button">Explorar Agora</a>
+            </div>
+        </div>
+
+        <div id="carouselPaginicial" class="carousel slide " data-bs-ride="carousel">
+            <!-- Indicadores -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselPaginicial" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselPaginicial" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            </div>
+            <h3 class="titulo1 ">Filmes surprendentes</h3>
+            <!-- Slides -->
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                    <main class="container mt-4">
+                        <div class="row g-4 justify-content-center">
+                            <!-- Filmes 1 a 5 -->
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BYzRiYTA1YTEtMjYwMi00NGVhLThkOGYtZDBlYjNjZDk2NDEwXkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 1" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BZGQ5NGEyYTItMjNiMi00Y2EwLTkzOWItMjc5YjJiMjMyNTI0XkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 2" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BNDRjY2E0ZmEtN2QwNi00NTEwLWI3MWItODNkMGYwYWFjNGE0XkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 3" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BZGQwYmEzMzktYzBmMy00NmVmLTkyYTUtOTYyZjliZDNhZGVkXkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 4" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BNDIzNGUwZmYtODM0Yy00NjA3LTgxOGUtOTY0ZGM5MjBkM2I3XkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 5" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+
+                <div class="carousel-item">
+                    <main class="container mt-4">
+                        <div class="row g-4 justify-content-center">
+                            <!-- Filmes 6 a 10 -->
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BYzFjMzNjOTktNDBlNy00YWZhLWExYTctZDcxNDA4OWVhOTJjXkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 6" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BMzc3OWFhZWItMTE2Yy00N2NmLTg1YTktNGVlNDY0ODQ5YjNlXkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 7" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BMTY4MTUxMjQ5OV5BMl5BanBnXkFtZTcwNTUyMzg5Ng@@._V1_SX300.jpg"
+                                            alt="Filme 8" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BMWU4MmUxODktMWUwYy00YzM0LTg1ZmItNzVlMTZhOWVlNWFjXkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 9" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="post text-center">
+                                    <a href="#"><img
+                                            src="https://m.media-amazon.com/images/M/MV5BY2Q2ZmI5ZjUtNWVhMC00YzJkLTlmYjMtY2RmZDhkNzEzYjZhXkEyXkFqcGc@._V1_SX300.jpg"
+                                            alt="Filme 10" class="img-fluid img-hover"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPaginicial"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselPaginicial"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <footer class="container-fluid px-0">
+        <div class="line "></div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="sobre text-center">
+                    <h4 class="text-warning fw-bold text-start">Sobre mim:</h4>
+                    <p class="sobremim text-start">
+                    <p class="sobremim text-start">
+                        Sou Caio Moraes, estudante de Análise e Desenvolvimento de Sistemas.
+                        Gosto de transformar ideias em experiências digitais, sempre buscando
+                        aprender algo novo a cada projeto. Este site foi criado como parte de
+                        meus estudos, unindo prática de desenvolvimento web com algo que curto
+                        muito: filmes!
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="autoria text-center">
+                    <h4 class="text-warning fw-bold text-start">Autoria:</h4>
+                    <p class="text-start">
+                        <i class="bi bi-person-fill text-start" style="font-size: 20px;"></i>
+                        Aluno: Caio Moraes da Silva <br>
+                        <i class="bi bi-person-fill text-start" style="font-size: 20px;"></i>
+                        Curso: ADS<br>
+                        <i class="bi bi-person-fill text-start" style="font-size: 20px;"></i>
+                        Turma: Manhã
+                    </p>
+                    <div class="line2 "></div>
+                    <h5 class="text-warning fw-bold text-start">Redes sociais: </h5>
+                    <a href="https://github.com/CaioM0RAES762" target="_blank" class="text-light me-3 fs-4">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="mailto:caio37908@gmail.com" class="text-light me-3 fs-4">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/__caio.moraes/" target="_blank" class="text-light fs-4">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

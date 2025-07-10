@@ -1,0 +1,513 @@
+/* Estilização dos Bodys */
+body {
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  margin: 0;
+  padding: 0;
+  min-height: 90.5vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.body-cadastro {
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Telas de Login e Cadastro*/
+.conteiner {
+    width: 90%;
+  max-width: 480px;
+  height: 80vh;
+  background-color: #1a1a1a;
+  margin: auto;
+  padding: auto;
+  display: block;
+  margin-top: 5%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.conteiner img {
+  position: relative;
+  top: 3%;
+  display: block;
+  margin: 1px auto 0px auto;
+  width: 30%;
+  height: 20%;
+}
+
+.conteiner h1 {
+  padding-top: 0;
+  text-align: center;
+  padding: 12px 0;
+  color: #f0f0f0;
+}
+
+.conteiner input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  width: 80%;
+  height: 40px;
+  border: 0.0767rem solid #515151;
+  border-radius: 2rem;
+  outline: none;
+  padding: 5px 14px;
+  background-color: #2a2a2b;
+  color: #ccc;
+}
+
+.conteiner .enter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 23px auto;
+  width: 83%;
+  height: 43px;
+  padding: 14px;
+  background-color: #e2b500;
+  color: #2a2a2b;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  line-height: 40px;
+  transition: 0.5s;
+}
+
+.conteiner .enter:hover {
+  width: 86%;
+  height: 46px;
+  font-size: 1.27rem;
+}
+
+.conteiner .muda-senha {
+  display: block;
+  margin: 10px auto;
+  height: 20px;
+  padding: 5px 14px;
+  color: #b0b0b0;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  line-height: 20px;
+  transition: 0.5s;
+}
+
+.conteiner .muda-senha:hover {
+  color: #fff;
+}
+
+.conteiner .registro {
+  display: block;
+  margin: 20px auto;
+  margin-bottom: 50px;
+  width: 40%;
+  height: 20px;
+  padding: 10px 14px;
+  background-color: none;
+  color: #fff;
+  border: 1px solid #e2b500;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  line-height: 20px;
+  transition: 0.5s;
+}
+
+.conteiner .registro:hover {
+  width: 43%;
+  height: 23px;
+  font-size: 1.27rem;
+  background-color: #e2b500;
+  color: #2a2a2b;
+}
+
+/* Responsividade Telas de Login e Cadastro*/
+@media (max-width: 1366px) {
+  .conteiner {
+     background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+    height: 95.5vh;
+    padding-bottom: 30px;
+  }
+
+  .conteiner img {
+    width: 15%;
+    height: auto;
+    padding-bottom: 3%;
+  }
+
+  .conteiner h1 {
+    font-size: 1.6rem;
+  }
+
+  .conteiner input,
+  .conteiner .enter {
+    width: 80%;
+  }
+
+  .conteiner .registro {
+    width: 20%;
+    padding: 15px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .conteiner {
+    width: 100%;
+    max-width: none;
+    height: 96.5vh;
+    border-radius: 0;
+    margin-top: 0;
+  }
+
+  .conteiner img {
+    width: 35%;
+    height: auto;
+    padding-bottom: 10px;
+  }
+
+  .conteiner input,
+  .conteiner .enter {
+    width: 80%;
+    padding: 5px;
+  }
+
+  .conteiner .registro {
+    width: 30%;
+    font-size: 1rem;
+  }
+
+  .conteiner h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .conteiner h1 {
+    font-size: 1.4rem;
+  }
+
+  .conteiner .registro {
+    width: 30%;
+    font-size: 1rem;
+  }
+
+  .conteiner .enter {
+    font-size: 1rem;
+  }
+}
+
+/* Estilização Área Perfis do usuário*/
+.conteiner-perfil {
+  width: 70%;
+  height: 60vh;
+  background-color: #1a1a1a;
+  margin: auto;
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.conteiner-perfil h1 {
+  text-align: center;
+  color: #f0f0f0;
+}
+
+.conteiner-perfil .criar-perfil {
+  width: 150px;
+  height: 43px;
+  margin-top: 20px;
+  background-color: #e2b500;
+  color: #2a2a2b;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  line-height: 43px;
+  transition: 0.5s;
+}
+
+#mensagem-vazia {
+  color: #aaa;
+  font-size: 1.1rem;
+  padding-top: 40px;
+  text-align: center;
+  height: 20vh;
+}
+
+.conteiner-perfil .criar-perfil:hover {
+  width: 160px;
+  height: 46px;
+  font-size: 1.07rem;
+}
+
+.perfil-item {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+  color: white;
+  font-family: sans-serif;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-perfil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #888;
+  transition: 0.4s;
+}
+
+.avatar-perfil:hover{
+  filter: brightness(0.6);
+  cursor: pointer;
+}
+
+.btn-lixeira {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #e2b500;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  line-height: 0;
+}
+
+
+.nome-perfil {
+  margin: 10px 0 5px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.btn-editar {
+  background-color: transparent;
+  color: #e2b500;
+  border: 2px solid #e2b500;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-editar:hover {
+  background-color: #e2b500;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+/* Responsividade área de perfis do usuário*/
+@media (max-width: 1366px) {
+  .conteiner-perfil {
+    background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+    height: 96vh;
+    padding-bottom: 30px;
+  }
+
+  .conteiner-perfil .avatar-perfil{
+    width: 174px;
+    height: auto;
+  }
+
+  .conteiner-perfil h1 {
+    font-size: 3.5rem;
+    position: absolute;
+    top: 4%;
+  }
+
+  .conteiner-perfil .nome-perfil {
+    font-size: 1.4rem;
+  }
+
+  .conteiner-perfil .btn-editar {
+    margin-top: 12px;
+    font-size: 1.5rem;
+  }
+
+   .conteiner-perfil .criar-perfil {
+    width: 300px;
+    font-size: 1.5rem;
+    margin-top: 80px;
+    padding: 10px;
+  }
+
+
+}
+
+
+@media (max-width: 576px) {
+  .conteiner {
+    height: 96.5vh;
+  }
+
+  .conteiner-perfil .avatar-perfil{
+    width: 100px;
+    height: auto;
+  }
+
+  .conteiner-perfil h1 {
+    font-size: 2.3rem;
+    position: absolute;
+    top: 4%;
+  }
+
+  .conteiner-perfil .nome-perfil {
+    font-size: 1rem;
+  }
+
+  .conteiner-perfil .btn-editar {
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+
+   .conteiner-perfil .criar-perfil {
+    width: 200px;
+    font-size: 1.5rem;
+    margin-top: 80px;
+    padding: 8px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .conteiner-perfil h1 {
+    font-size: 2.1rem;
+    position: absolute;
+    top: 4%;
+  }
+
+  .conteiner-perfil .nome-perfil {
+    font-size: 0.8rem;
+  }
+
+  .conteiner-perfil .btn-editar {
+    margin-top: 12px;
+    font-size: 0.7rem;
+  }
+
+   .conteiner-perfil .criar-perfil {
+    width: 120px;
+    font-size: 1rem;
+    margin-top: 80px;
+    padding: 4px;
+  }
+}
+
+
+/* Área criação de Perfil*/
+
+body.criar-perfil-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  color: white;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.container-perfil {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.container-perfil h1 {
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+.input-nome {
+  width: 60%;
+  padding: 0.9rem;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 40px;
+  font-size: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 1rem 0 2rem 0;
+  padding-right: 0.5rem;
+}
+
+.avatar-grid img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+.avatar-grid img.selecionado {
+  border-color: #9b5eff;
+}
+
+.btn-criar {
+  background-color: #9b5eff;
+  border: none;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-criar:hover {
+  background-color: #7e4bcb;
+}

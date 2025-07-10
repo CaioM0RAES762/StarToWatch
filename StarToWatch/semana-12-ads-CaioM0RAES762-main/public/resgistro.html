@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro de usuario</title>
+    <link rel="stylesheet" href="assents/css/cadastro.css">
+</head>
+<style>
+    .conteiner {
+        height: 88vh;
+        margin-top: 3%;
+    }
+</style>
+
+<body class="body-cadastro">
+    <div class="conteiner">
+        <img src="avatares/logo.png" alt="">
+        <h1> Cadastrar</h1>
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="text" id="login" placeholder="Endereço de Email">
+        <input type="password" id="senha" placeholder="Senha">
+        <input type="password" id="confirmarSenha" placeholder="Confirmar Senha">
+
+        <button id="btnRegistrar" class="enter">Criar conta</button>
+
+        <a href="login.html" class="muda-senha">Já tem conta? Fazer login</a>
+    </div>
+
+     <script>
+    document.getElementById('btnRegistrar').addEventListener('click', async () => {
+      const nome = document.getElementById('nome').value;
+      const login = document.getElementById('login').value;
+      const senha = document.getElementById('senha').value;
+      const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+      if (senha !== confirmarSenha) {
+        alert("As senhas não coincidem!");
+        return;
+      }
+
+      const novoUsuario = {
+        nome: nome,
+        login: login,
+        senha: senha,
+        email: login, 
+        admin: false
+      };
+
+      try {
+        const resposta = await fetch('http://localhost:3000/usuarios', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(novoUsuario)
+        });
+
+        if (resposta.ok) {
+          alert('Usuário cadastrado com sucesso!');
+          window.location.href = 'login.html';
+        } else {
+          alert('Erro ao cadastrar usuário.');
+        }
+      } catch (error) {
+        alert('Erro de rede: ' + error.message);
+      }
+    });
+  </script>
+</body>
+
+</html>

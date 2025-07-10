@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN</title>
+  <link rel="stylesheet" href="assents/css/cadastro.css">
+</head>
+
+<body>
+  <div class="conteiner">
+    <img src="avatares/logo.png" alt="">
+    <h1> Entrar</h1>
+    <input type="text" id="email" placeholder="Endereço de Email">
+    <input type="password" id="senha" placeholder="Senha">
+
+    <button id="btnEntrar" class="enter">Entrar</button>
+
+    <a href="#" class="muda-senha">Esqueceu a Senha?</a>
+    <a href="resgistro.html" class="registro">Criar conta</a>
+  </div>
+  <script src="assents/js/autentificacao.js"></script>
+
+  <script>
+    document.getElementById('btnEntrar').addEventListener('click', async () => {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      const sucesso = await login(email, senha);
+      if (sucesso) {
+        window.location.href = 'perfilUser.html';
+      } else {
+        alert('Login ou senha inválidos');
+      }
+    });
+  </script>
+</body>
+
+</html>

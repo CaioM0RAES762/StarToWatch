@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Filmes</title>
+  <link rel="stylesheet" href="assents/css/CadastraFilmes.css">
+</head>
+<body>
+
+  <h1>Catálogo de Filmes</h1>
+  <h2 id="formTitulo">Cadastro de Novo Filme</h2>
+
+  <form id="formFilme">
+    <input type="hidden" name="id" />
+    <input type="text" name="titulo" placeholder="Título do Filme" required />
+    <input type="number" name="ano" placeholder="Ano de Lançamento" required />
+    <input type="text" name="duracao" placeholder="Duração (ex: 2h19min)" required />
+    <input type="url" name="trailer" placeholder="URL do Trailer (YouTube embutido)" required />
+    <input type="url" name="poster" placeholder="URL do Poster" required />
+    <textarea name="plot" placeholder="Sinopse (plot)"></textarea>
+    <input type="text" name="genre" placeholder="Gêneros (ex: Drama, Ação)" />
+    <input type="text" name="director" placeholder="Diretor" />
+    <input type="text" name="actors" placeholder="Atores (separados por vírgula)" />
+    <input type="text" name="rottenTomatoes" placeholder="Nota Rotten Tomatoes (ex: 81%)" />
+    <button type="submit">Salvar Filme</button>
+  </form>
+
+  <h2>Filmes Cadastrados</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Poster</th>
+        <th>Título</th>
+        <th>Ano</th>
+        <th>Duração</th>
+        <th>Diretor</th>
+        <th>Atores</th>
+        <th>Nota</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaFilmes"></tbody>
+  </table>
+
+<script>
+  const form = document.getElementById('formFilme');
+  const tabela = document.getElementById('tabelaFilmes');
+  const apiUrl = 'http://localhost:3000/filmes';
+
+  let editando = false;
+  let idEditando = null;
+
+  function carregarFilmes() {
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        tabela.innerHTML = '';
+        data.forEach(filme => {
+          const linha = document.createElement('tr');
+          linha.innerHTML = `
+            <td><img src="${filme.poster}" alt="Poster de ${filme.titulo}" height="100"/></td>
+            <td>${filme.titulo}</td>
+            <td>${filme.ano}</td>
+            <td>${filme.duracao}</td>
+            <td>${filme.director}</td>
+            <td>${filme.actors}</td>
+            <td>${filme.rottenTomatoes}</td>
+            <td>
+              <button onclick="editarFilme(${filme.id})">Editar</button>
+              <button onclick="excluirFilme(${filme.id})">Excluir</button>
+            </td>
+          `;
+          tabela.appendChild(linha);
+        });
+      });
+  }
+
+  function editarFilme(id) {
+    fetch(`${apiUrl}/${id}`)
+      .then(res => res.json())
+      .then(filme => {
+        for (const [key, value] of Object.entries(filme)) {
+          if (key === 'id') continue;
+          const campo = form.elements[key];
+          if (campo) {
+            campo.value = value;
+          }
+        }
+        editando = true;
+        idEditando = id;
+        form.querySelector('button[type="submit"]').textContent = 'Atualizar Filme';
+      });
+  }
+
+  function excluirFilme(id) {
+    if (confirm('Tem certeza que deseja excluir este filme?')) {
+      fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
+        .then(() => carregarFilmes());
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const filme = Object.fromEntries(formData.entries());
+
+    delete filme.id;
+
+    if (filme.trailer) {
+      const match = filme.trailer.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w\-]{11})/);
+      if (match && match[1]) {
+        const videoId = match[1];
+        filme.trailer = `https://www.youtube.com/embed/${videoId}`;
+      } else {
+        alert('URL do trailer inválida. Use um link do YouTube.');
+        return;
+      }
+    }
+
+    const metodo = editando ? 'PUT' : 'POST';
+    const url = editando ? `${apiUrl}/${idEditando}` : apiUrl;
+
+    fetch(url, {
+      method: metodo,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(filme)
+    })
+      .then(res => res.json())
+      .then(() => {
+        form.reset();
+        form.querySelector('button[type="submit"]').textContent = 'Cadastrar Filme';
+        editando = false;
+        idEditando = null;
+        carregarFilmes();
+      });
+  });
+
+  carregarFilmes();
+</script>
+
+
+
+
+</body>
+</html>

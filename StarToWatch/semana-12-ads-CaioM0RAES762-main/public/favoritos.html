@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assents/css/favoritos.css">
+</head>
+<script src="assents/js/favoritos.js"></script>
+
+<body>
+
+    <aside>
+        <div class="menu">
+            <ul>
+                <img src="avatarpadrao.png" alt="" id="avatar-menu" class="avatar"> <span id="userName">
+                    SeuNome</span><span id="email">Seu email</span>
+                <li><a href="#" id="btn-favoritos">Meus favoritos</a></li>
+                <li><a href="#" id="btn-verdepois">Lista de salvos para ver depois</a></li>
+                <li><a href="#">Recomendações</a></li>
+                <li><a href="index.html">Início</a></li>
+            </ul>
+        </div>
+    </aside>
+
+        <main>
+        <h1 class="titulo-salvos" style="display:none;">❤️Favoritos</h1>
+        <div id="salvos" class="row g-4 justify-content-center"></div>
+
+    </main>
+
+    <main>
+        <h1 class="titulo-verdepois" style="display:none;">Salvos para mais tarde</h1>
+        <div id="ver-depois" class="row g-4 justify-content-center" style="display:none;"></div>
+    </main>
+
+    <script>
+        window.onload = () => {
+            const perfil = JSON.parse(localStorage.getItem('perfilSelecionado'));
+            const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+            const avatarBtn = document.getElementById('avatar-btn');
+            const avatarMenu = document.getElementById('avatar-menu');
+            const userName = document.getElementById('userName');
+            const emailSpan = document.getElementById('email');
+            const loginContainer = document.getElementById('loginContainer');
+
+
+            if (usuario) {
+                if (loginContainer) loginContainer.style.display = 'none';
+
+                if (perfil) {
+                    if (avatarBtn) avatarBtn.src = perfil.imagem;
+                    if (avatarMenu) avatarMenu.src = perfil.imagem;
+
+                    if (userName) {
+                        const nome = perfil.nome;
+                        const maxCharsNome = 12;
+                        userName.textContent = nome.length > maxCharsNome ? nome.slice(0, maxCharsNome) + '...' : nome;
+                    }
+
+                }
+
+                if (emailSpan) {
+                    const email = usuario.login;
+                    const maxChars = 24;
+                    emailSpan.textContent = email.length > maxChars ? email.slice(0, maxChars) + '...' : email;
+                }
+
+            } else {
+                if (loginContainer) loginContainer.style.display = 'block';
+                if (avatarBtn) avatarBtn.src = 'avatarpadrao.png';
+                if (avatarMenu) avatarMenu.src = 'avatarpadrao.png';
+                if (userName) userName.textContent = 'Seu nome';
+                if (emailSpan) emailSpan.textContent = 'Seu email';
+            }
+        };
+    </script>
+
+
+
+</body>
+
+</html>
