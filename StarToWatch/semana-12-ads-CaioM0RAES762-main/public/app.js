@@ -3,7 +3,7 @@
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
-    fetch('http://localhost:3000/filmes')
+    fetch('https://backend-startowatchh-1.onrender.com/filmes')
       .then(res => res.json())
       .then(filmes => {
         if (id) {

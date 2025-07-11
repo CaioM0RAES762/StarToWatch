@@ -95,17 +95,20 @@ header.scrolled {
 }
 
 .menu-user {
-  display: none;
-  position: absolute;
-  top: 65px;
-  right: 14px;
-  background-color: #000000;
-  opacity: 0.9;
-  border: 1px solid #333;
-  border-radius: 2px;
-  width: 200px;
-  margin-top: 10px;
-  z-index: 999;
+    display: none;
+    position: fixed ;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 400px;
+    font-size: 19px;
+    width: 100%;
+    background-color: #141414;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px 0;
+    z-index: 99999999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .menu-user::before {
@@ -176,11 +179,13 @@ header.scrolled {
   position: relative;
   left: 5%;
   margin-top: 5%;
+  z-index: -1;
 }
 
 p {
   position: relative;
   left: 5%;
+   z-index: -1;
 }
 
 .caixa-pesquisa {
@@ -188,7 +193,7 @@ p {
   display: flex;
   align-items: center;
   margin: 10px auto 30px auto;
-  width: 60%;
+  width: 50%;
 }
 
 .caixa-pesquisa input {
@@ -199,6 +204,7 @@ p {
   border: 1px solid #a9a9a9;
   color: #ccc;
   font-size: 1rem;
+  z-index: -1;
 }
 
 .caixa-pesquisa i {

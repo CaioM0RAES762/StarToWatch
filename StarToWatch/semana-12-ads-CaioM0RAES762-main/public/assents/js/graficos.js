@@ -1,6 +1,6 @@
 async function carregarFilmes() {
   try {
-    const resposta = await fetch("http://localhost:3000/filmes"); 
+    const resposta = await fetch("https://backend-startowatchh-1.onrender.com/filmes"); 
     const filmes = await resposta.json();
 
     const generos = {};

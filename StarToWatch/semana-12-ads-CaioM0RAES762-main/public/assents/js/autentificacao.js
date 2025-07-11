@@ -1,5 +1,5 @@
 async function login(login, senha) {
-  const response = await fetch('http://localhost:3000/usuarios?login=' + login);
+  const response = await fetch('https://backend-startowatchh-1.onrender.com/usuarios?login=' + login);
   const usuarios = await response.json();
   
   if (usuarios.length === 0) return false;
